@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Image Finder</title>
+</head>
+<body>
+    <h1>Image Finder</h1>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Search</button>
+    </form>
+
+    {% if images %}
+        <h2>Search Results</h2>
+        {% for image in images %}
+        <span>
+            <a href="{{ image.url }}" target="_blank">
+                <img src="{{ image.previewURL }}" alt="{{ image.photographer }} - Pexels">
+            </a>
+        </span>
+        {% endfor %}
+    {% else %}
+        <p>No results found.</p>
+    {% endif %}
+</body>
+</html>
